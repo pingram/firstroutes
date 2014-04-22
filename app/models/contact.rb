@@ -4,6 +4,7 @@ class Contact < ActiveRecord::Base
 
   belongs_to :user
   has_many :contact_shares
+  has_many :comments, :as => :commentable
 
   def self.contacts_for_user_id(user_id)
     Contact.select('*')
