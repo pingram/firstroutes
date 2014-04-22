@@ -6,12 +6,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
-    # in Rails 4 you must whitelist attributes with #permit
-    if user.save
-      render :json => user
+    @user = User.new(user_params)
+
+    if @user.save
+      render :json => @user
     else
-      render :json => user.errors.full_messages, :status => :unprocessable_entity
+      render :json => @user.errors.full_messages, :status => :unprocessable_entity
     end
   end
 
@@ -23,20 +23,24 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(user_params)
-    @user.save!
-    render :json => @user
+
+    if @user.save!
+      render :json => @user
+    else
+      render json: @user.errors.full_messages
+    end
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.try :destroy
-    render json: { message: "user was destroyed"}
+    render json: { message: "#{@user.username} was destroyed"}
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :username)
   end
 
 end
