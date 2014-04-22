@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422221631) do
+ActiveRecord::Schema.define(version: 20140422223415) do
 
   create_table "comments", force: true do |t|
     t.string   "body",             null: false
@@ -24,21 +24,23 @@ ActiveRecord::Schema.define(version: 20140422221631) do
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id"
 
   create_table "contact_shares", force: true do |t|
-    t.integer  "contact_id", null: false
-    t.integer  "user_id",    null: false
+    t.integer  "contact_id",                  null: false
+    t.integer  "user_id",                     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_favorite", default: false
   end
 
   add_index "contact_shares", ["contact_id"], name: "index_contact_shares_on_contact_id"
   add_index "contact_shares", ["user_id"], name: "index_contact_shares_on_user_id"
 
   create_table "contacts", force: true do |t|
-    t.string   "name",       null: false
-    t.string   "email",      null: false
-    t.integer  "user_id",    null: false
+    t.string   "name",                        null: false
+    t.string   "email",                       null: false
+    t.integer  "user_id",                     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_favorite", default: false
   end
 
   add_index "contacts", ["email"], name: "index_contacts_on_email", unique: true

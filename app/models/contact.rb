@@ -11,4 +11,11 @@ class Contact < ActiveRecord::Base
           .joins("LEFT OUTER JOIN contact_shares ON contacts.id = contact_shares.contact_id")
           .where("contacts.user_id = #{user_id} OR contact_shares.user_id = #{user_id}")
   end
+
+  def self.favorite_contacts(user_id)
+    Contact.select('contacts.*')
+          .joins("LEFT OUTER JOIN contact_shares ON contacts.id = contact_shares.contact_id")
+          .where("contacts.is_favorite = 't' OR contact_shares.is_favorite = 't'")
+          .where("contacts.user_id = #{user_id} OR contact_shares.user_id = #{user_id}")
+  end
 end

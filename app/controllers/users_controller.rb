@@ -37,6 +37,10 @@ class UsersController < ApplicationController
     render json: { message: "#{@user.username} was destroyed"}
   end
 
+  def favorites
+    render json: Contact.favorite_contacts(params[:id])
+  end
+
   private
 
   def user_params
