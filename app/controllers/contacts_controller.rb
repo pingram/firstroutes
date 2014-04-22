@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
 
   def index
-    @contacts = Contact.all
+    @contacts = Contact.contacts_for_user_id(params[:user_id])
     render :json => @contacts
   end
 
@@ -42,5 +42,7 @@ class ContactsController < ApplicationController
   def contact_params
     params.require(:contact).permit(:name, :email, :user_id)
   end
+
+
 
 end
