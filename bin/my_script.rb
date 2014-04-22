@@ -19,12 +19,12 @@ def create_user
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/users/2.json'
+    path: '/users/3.json'
   ).to_s
 
   puts RestClient.delete(
     url,
-    { :user => { :name => "Steve"} }
+    { :user => { :name => "Jimmy", :email => "jimbo@gmail.com" } }
   )
 end
 
