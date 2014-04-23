@@ -41,6 +41,10 @@ class UsersController < ApplicationController
     render json: Contact.favorite_contacts(params[:id])
   end
 
+  def contact_groups
+    render json: ContactGroup.where(:user_id => params[:id])
+  end
+
   private
 
   def user_params

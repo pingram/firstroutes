@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
   has_many :contact_shares
   has_many :contacts
   has_many :comments, :as => :commentable
+  has_many :contact_groups
 end

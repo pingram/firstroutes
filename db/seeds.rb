@@ -8,3 +8,7 @@ unicorn_c = Contact.create!(name: 'my little pony', email: 'girlsloveme@uni.com'
 cs1 = ContactShare.create!(contact_id: buck_c.id, user_id: bob.id)
 
 com1 = ned.comments.create!(body: 'I love talking!!!')
+
+larp = ContactGroup.create!(name: "LARPers", user_id: ned.id)
+
+ContactGroupContact.create!(contact_id: unicorn_c.id, contact_group_id: larp.id)
