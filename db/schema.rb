@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423000147) do
+ActiveRecord::Schema.define(version: 20140423001427) do
 
   create_table "comments", force: true do |t|
     t.string   "body",             null: false
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20140423000147) do
   end
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id"
+
+  create_table "contact_group_contacts", force: true do |t|
+    t.integer  "contact_id",       null: false
+    t.integer  "contact_group_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contact_group_contacts", ["contact_group_id"], name: "index_contact_group_contacts_on_contact_group_id"
+  add_index "contact_group_contacts", ["contact_id"], name: "index_contact_group_contacts_on_contact_id"
 
   create_table "contact_groups", force: true do |t|
     t.string   "name",       null: false
